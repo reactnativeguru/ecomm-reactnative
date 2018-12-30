@@ -7,12 +7,14 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {
   HomeScreen,
+  SellScreen,
 
 } from './routes';
 
 const MainTabNavigator = createBottomTabNavigator({
 
   Home: HomeScreen,
+  Sell: SellScreen,
 },
 {
   defaultNavigationOptions: ({ navigation }) => ({
@@ -21,6 +23,9 @@ const MainTabNavigator = createBottomTabNavigator({
     }) => {
       const { routeName } = navigation.state;
       if (routeName === 'Home') {
+        return <FontAwesome name="user-o" size={horizontal ? 20 : 25} color={tintColor} />;
+      } 
+       if (routeName === 'Sell') {
         return <FontAwesome name="user-o" size={horizontal ? 20 : 25} color={tintColor} />;
       } 
     },

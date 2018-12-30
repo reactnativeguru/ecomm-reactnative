@@ -1,21 +1,51 @@
-import React from "react";
-import { 
-    View,
-    Text,
-    StyleSheet
-} from "react-native";
+import React, { PureComponent } from 'react'
+import { View, StyleSheet } from 'react-native'
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Footer,
+  FooterTab,
+  Button,
+  Left,
+  Right,
+  Body,
+  Icon,
+  Text
+} from 'native-base'
 
-const HomeScreen = (props) => (
-    <View style={styles.container}>
-        <Text>HomeScreen</Text>
-    </View>
+import ScreenHeader from '../../components/ScreenHeader'
+class HomeScreen extends PureComponent {
+  render () {
+    return (
+      <Container>
+        <ScreenHeader
+          //  backgroundColor={theme.colors.white}
+          title="Home"
+          //  textColor={theme.colors.black}
+          borderBottomWidth={1}
+        />
+        <Content>
+          <Text>This is Content Section</Text>
+        </Content>
+        <Footer>
+          <FooterTab>
+            <Button full>
+              <Text>Footer</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
     )
-export default HomeScreen;
+  }
+}
+export default HomeScreen
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-});
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+})
