@@ -7,6 +7,9 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { getFontSize, dySize } from '../utils/responsive';
 
+
+
+
 const styles = StyleSheet.create({
   rightView: {
     flex: 1,

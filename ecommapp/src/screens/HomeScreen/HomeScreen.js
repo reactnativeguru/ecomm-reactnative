@@ -12,8 +12,9 @@ import {
   Right,
   Body,
   Icon,
-  Text
+  
 } from 'native-base'
+import { Box, Text } from 'react-native-design-utility'
 
 import ScreenHeader from '../../components/ScreenHeader'
 class HomeScreen extends PureComponent {
@@ -32,7 +33,9 @@ class HomeScreen extends PureComponent {
         <Footer>
           <FooterTab>
             <Button full>
-              <Text>Footer</Text>
+              <Text size="xl" bold thousand>
+
+              Footer</Text>
             </Button>
           </FooterTab>
         </Footer>
