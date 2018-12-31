@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 import {
   Container,
   Header,
@@ -11,12 +11,13 @@ import {
   Left,
   Right,
   Body,
-  Icon,
-  
+  Icon
 } from 'native-base'
 import { Box, Text } from 'react-native-design-utility'
-
+const iconUrl = '../../../assets/images/icon.png'
 import ScreenHeader from '../../components/ScreenHeader'
+import Images from 'assets/images';
+
 class HomeScreen extends PureComponent {
   render () {
     return (
@@ -29,13 +30,19 @@ class HomeScreen extends PureComponent {
         />
         <Content>
           <Text>This is Content Section</Text>
+          <Box f={1} center>
+            <Box avatar circle={50} shadow={1}>
+               <Image source={Images.logo}
+        />
+            </Box>
+          </Box>
         </Content>
         <Footer>
           <FooterTab>
             <Button full>
               <Text size="xl" bold thousand>
-
-              Footer</Text>
+                Footer
+              </Text>
             </Button>
           </FooterTab>
         </Footer>
