@@ -12,3 +12,5 @@
 
 5. Design System: https://github.com/EQuimper/react-native-design-utility/
 
+6. Apollo Client: https://www.apollographql.com/docs/react/advanced/boost-migration.html
+
