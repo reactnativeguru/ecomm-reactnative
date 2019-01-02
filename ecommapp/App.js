@@ -3,6 +3,7 @@
  * @flow
  */
 console.disableYellowBox = true
+
 import React, { Component } from 'react'
 import { Platform } from 'react-native'
 import RootNavigation from './src/navigation/RootNavigation'
