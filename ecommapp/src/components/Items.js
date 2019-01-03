@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
-
+import Item from './Item'
 import { 
     View,
-    StyleSheet, FlatList, 
+    StyleSheet, FlatList, ActivityIndicator
 } from "react-native";
 import { Text, ListItem, Left, Body, Icon, Right, Title } from "native-base";
 
@@ -25,32 +25,20 @@ const ALL_ITEMS_QUERY = gql`
 
 class Items extends Component {
 
-
-    renderItem = ({data}) => {
-        return (
-            <ListItem itemDivider>
-             {/* <Body>
-            <Text>{data.title}</Text>
-            </Body> */}
-            </ListItem>
-        )
-    }
-
-
-
     render() {
         return (
             <View >
             <Query query={ALL_ITEMS_QUERY}>
           {({ loading, data, error }) => {
-            if (loading) return <Text>Loading...</Text>
+            if (loading) return <ActivityIndicator/>
             if (error) return <Text>Error{error.message}</Text>
             else {
                 console.log(data.items)
                 return (
                  <FlatList
-                data={data.items}
-                renderItem={({item}) => <ListItem><Text>{item.title}</Text></ListItem>}
+                    data={data.items}
+                // renderItem={({item}) => <ListItem><Text>{item.title}</Text></ListItem>}
+                renderItem={({item}) => <Item item={item}/>}
                 keyExtractor={item => item.id}
 
             />
