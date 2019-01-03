@@ -25,7 +25,7 @@ const client = new ApolloClient({
     uri: Config.endpoint,
     credentials: 'include'
   }), 
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache(), 
   request: async (operation) => {
     operation.setContext({
       fetchOptions:{

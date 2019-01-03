@@ -8,13 +8,16 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
   HomeScreen,
   SellScreen,
+  ShopScreen
 
 } from './routes';
 
 const MainTabNavigator = createBottomTabNavigator({
+  Shop: ShopScreen,
 
-  Home: HomeScreen,
   Sell: SellScreen,
+   Home: HomeScreen
+
 },
 {
   defaultNavigationOptions: ({ navigation }) => ({
@@ -23,10 +26,13 @@ const MainTabNavigator = createBottomTabNavigator({
     }) => {
       const { routeName } = navigation.state;
       if (routeName === 'Home') {
-        return <FontAwesome name="user-o" size={horizontal ? 20 : 25} color={tintColor} />;
+        return <FontAwesome name="home" size={horizontal ? 20 : 25} color={tintColor} />;
+      } 
+       if (routeName === 'Shop') {
+        return <FontAwesome name="shopping-bag" size={horizontal ? 20 : 25} color={tintColor} />;
       } 
        if (routeName === 'Sell') {
-        return <FontAwesome name="user-o" size={horizontal ? 20 : 25} color={tintColor} />;
+        return <FontAwesome name="money" size={horizontal ? 20 : 25} color={tintColor} />;
       } 
     },
   }),
