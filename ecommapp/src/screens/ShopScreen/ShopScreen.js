@@ -23,7 +23,7 @@ import Items from '../../components/Items'
 class ShopScreen extends PureComponent {
   render () {
     return (
-      <Container>
+      <Container padder>
         <ScreenHeader
           //  backgroundColor={theme.colors.white}
           title="Shop"
