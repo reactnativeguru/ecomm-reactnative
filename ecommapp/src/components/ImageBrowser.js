@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import ViewPhotos from './ViewPhotos'
 
-class Camera extends Component {
+class ImageBrowser extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -31,7 +31,7 @@ class Camera extends Component {
       return <ViewPhotos photoArray={this.state.photoArray} />
     }
     return (
-      <View style={styles.container}>
+      <View>
         <TouchableHighlight onPress={() => this.getPhotos()}>
           <Text>Add Image</Text>
         </TouchableHighlight>
@@ -39,7 +39,7 @@ class Camera extends Component {
     )
   }
 }
-export default Camera
+export default ImageBrowser
 
 const styles = StyleSheet.create({
   container: {

@@ -13,9 +13,10 @@ import {
 } from './routes';
 
 const MainTabNavigator = createBottomTabNavigator({
+    Sell: SellScreen,
+
   Shop: ShopScreen,
 
-  Sell: SellScreen,
    Home: HomeScreen
 
 },
