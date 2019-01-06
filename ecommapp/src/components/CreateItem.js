@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { Alert, View, Text, StyleSheet, TouchableHighlight, CameraRoll } from 'react-native'
+import {
+  Alert,
+  View,
+  Text,
+  StyleSheet,
+  TouchableHighlight,
+  CameraRoll,
+  TextInput
+} from 'react-native'
 import * as Yup from 'yup'
 import FormInput from './Input'
 import { Formik } from 'formik'
@@ -15,7 +23,7 @@ import {
   Left,
   Right,
   Body,
-  Icon, 
+  Icon
 } from 'native-base'
 import ImageBrowser from './ImageBrowser'
 import gql from 'graphql-tag'
@@ -44,9 +52,8 @@ const CREATE_ITEM_MUTATION = gql`
 `
 
 class CreateItem extends Component {
-
-constructor(props){
-    super(props);
+  constructor(props) {
+    super(props)
     this.state = {
       title: '',
       price: '',
@@ -54,8 +61,7 @@ constructor(props){
       largeImage: '',
       description: ''
     }
-}    
-
+  }
 
   getPhotos = () => {
     CameraRoll.getPhotos({
@@ -68,110 +74,75 @@ constructor(props){
     )
   }
 
-//  handleChange = (value: string) => {
-//     if (this.state.value !== value) {
-//       // remember that onChangeText will be Formik's setFieldValue
-//       this.setState({ value })
-//     }
-//   }
-  submitHandler = async (values, bag) => {
-    this.setState({
-        title: values.title,
-        description: values.description,
-        image: values.image,
-        largeImage: values.largeImage,
-
-    })  
-    Alert.alert(JSON.stringify(this.state))
+  //  handleChange = (value: string) => {
+  //     if (this.state.value !== value) {
+  //       // remember that onChangeText will be Formik's setFieldValue
+  //       this.setState({ value })
+  //     }
+  //   }
+  handleSubmit = async () => {
+    // this.setState({
+    //   title: values.title,
+    //   description: values.description,
+    //   image: values.image,
+    //   largeImage: values.largeImage
+    // })
+    // Alert.alert(this.state)
   }
 
   render() {
     return (
       <Container>
-        <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.props}>
+        <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
           {(createItem, { loading, error, called, data }) => {
             return (
-                <View>
-              <Formik
-                initialValues={{
-                  title: '',
-                  price: '',
-                  description: '',
-                  image: ''
-                }}
-              //   onSubmit={this.submitHandler}
-                onSubmit = {async () => {
-                     this.setState({
-        title: values.title,
-        description: values.description,
-        image: values.image,
-        largeImage: values.largeImage,
-
-    })  
-                    res = await createItem();
-                    console.log(res)
-                }}
-
-                render={({
-                  values,
-                  handleSubmit,
-                  setFieldValue,
-                  errors,
-                  touched,
-                  setFieldTouched,
-                  isValid
-                }) => (
-                  <React.Fragment>
-                    <View>
-                      <FormInput
-                        label="title"
-                        accessibilityLabel="title"
-                        name="title"
-                        value={values.title}
-                        onValueChange={setFieldValue}
-                    //    onChangeText={value => setFieldValue("title", value)}
-                       onChangeText={value => setFieldValue("title", value)}
-
-                 
-                      />
-                      <FormInput
-                        label="price"
-                        accessibilityLabel="price"
-                        name="price"
-                        onValueChange={setFieldValue}
-                        value={values.price}
-                       onChangeText={value => setFieldValue("price", value)}
-
-                      />
-                      <FormInput
-                        label="description"
-                        accessibilityLabel="description"
-                        name="description"
-                        onValueChange={setFieldValue}
-                        value={values.description}
-                    onChangeText={value => setFieldValue("description", value)}
-
-                      />
-                      
-                       <TouchableHighlight onPress={() => this.getPhotos()}>
-                          <Text>Add Image</Text>
-                        </TouchableHighlight> 
-                        {/* <ImageBrowser />  no idea why this stopped rendering*/}
-                      <Button
-                        block
-                        accessibilityLabel="submit"
-                        style={styles.loginButton}
-                        onPress={handleSubmit}
-                        style={styles.button}
-                        // disabled={!isValid}
-                      >
-                        <Text>Submit</Text>
-                      </Button>
-                    </View>
-                  </React.Fragment>
-                )}
+               <View>
+              <TextInput
+                style={styles.input}
+                placeholder="title"
+                accessibilityLabel="title"
+                name="title"
+                value={this.state.title}
+                onChangeText={value => this.setState({ title: value })}
               />
-              </View>
+              <TextInput
+                style={styles.input}
+                placeholder="price"
+                accessibilityLabel="price"
+                name="price"
+                value={this.state.price}
+                onChangeText={value => this.setState({ price: value })}
+              />
+              <TextInput
+                style={styles.input}
+                placeholder="description"
+                accessibilityLabel="description"
+                name="description"
+                value={this.state.description}
+                onChangeText={value => this.setState({ description: value })}
+              />
+
+              <TouchableHighlight onPress={() => this.getPhotos()}>
+                <Text>Add Image</Text>
+              </TouchableHighlight>
+              {/* <ImageBrowser />  no idea why this stopped rendering*/}
+              <Button
+                block
+                accessibilityLabel="submit"
+                style={styles.loginButton}
+                onPress={
+                    async () => {
+                     //   alert(this.state)
+                         const res = await createItem();
+                        console.log(res)
+                    }
+                }
+                style={styles.button}
+                // disabled={!isValid}
+              >
+                <Text>Submit</Text>
+              </Button>
+            </View>
             )
           }}
         </Mutation>
@@ -192,5 +163,10 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 16
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1
   }
 })
